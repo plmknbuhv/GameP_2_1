@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="02_Manager">
+      <UniqueIdentifier>{13cc6bb1-77d9-4b68-9a12-67c1659db846}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03_Object">
+      <UniqueIdentifier>{b9b569df-ff51-4607-b699-183a423f59ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Core">
+      <UniqueIdentifier>{5a893d12-2ef2-4161-a1f7-f11488948aa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04_Scene">
+      <UniqueIdentifier>{9c061bee-b397-4d89-9f2d-5667ff96ee2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07_Module">
+      <UniqueIdentifier>{74699221-6460-4047-9153-e57fcd112dfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99_Headers">
+      <UniqueIdentifier>{782b6b6b-8c32-430b-85a0-2ca92618190f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>01_Core</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
