@@ -3,9 +3,11 @@
 #include "Actor.h"
 #include "Snake.h"
 
+class InputHandler;
 class TitleScene : public Scene
 {
-	TitleScene() {};
+public:
+	TitleScene();
 public :
 	void InitScene() override;
 	void Update() override;
@@ -17,5 +19,6 @@ private :
 	POS startButtonPos;
 	POS overButtonPos;
 	POS resolution;
-	InputHandler inputHandler;
+	Dir currentButton;
+	InputHandler* inputHandler;
 };

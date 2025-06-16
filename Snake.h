@@ -17,6 +17,8 @@ public:
 private :
 	std::queue<POS> location;
 	POS beforeBody;
+public:
+	bool isCanRender;
 };
 
-void RenderSnake(std::queue<POS> q);
+void RenderSnake(std::queue<POS> q, bool isCanRender);

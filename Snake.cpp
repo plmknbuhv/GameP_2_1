@@ -57,20 +57,23 @@ void Snake::Render()
 {
 	Gotoxy(beforeBody.x, beforeBody.y);
 	cout << " ";
-	RenderSnake(location);
-
-	Sleep(20);
+	RenderSnake(location, isCanRender);
 }
 
-void RenderSnake(std::queue<POS> q) 
+void RenderSnake(std::queue<POS> q, bool isCanRender)
 {
-	while (!q.empty()) 
+	while (!q.empty())
 	{
 		Gotoxy(q.front().x, q.front().y);
-		if (q.size() == 1)
-			cout << "бр";
+		if (isCanRender)
+		{
+			if (q.size() == 1)
+				cout << "бр";
+			else
+				cout << "бс";
+		}
 		else
-			cout << "бс";
+			cout << " ";
 
 		q.pop();
 	}

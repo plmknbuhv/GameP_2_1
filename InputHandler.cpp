@@ -4,12 +4,11 @@
 
 InputHandler::InputHandler()
 {
-	m_vecKeys.push_back({ 'W', Dir::UP });
-	m_vecKeys.push_back({ 'S', Dir::DOWN });
-	m_vecKeys.push_back({ 'A', Dir::LEFT });
-	m_vecKeys.push_back({ 'D', Dir::RIGHT });
-
-	m_vecKeys.push_back({ VK_UP, Dir::UP });
+	m_vecKeys.push_back({ 'W', Input::UP });
+	m_vecKeys.push_back({ 'S', Input::DOWN });
+	m_vecKeys.push_back({ 'A', Input::LEFT });
+	m_vecKeys.push_back({ 'D', Input::RIGHT });
+	m_vecKeys.push_back({ VK_SPACE, Input::SPACE });
 }
 
 ICommand* InputHandler::HandleInput()
@@ -18,8 +17,20 @@ ICommand* InputHandler::HandleInput()
 	{
 		bool isDown = (GetAsyncKeyState(key.vk) & 0x8000) != 0;
 		if (isDown)
-			return new MoveCommand(key.dir);
+			return new MoveCommand((Dir)key.key);
 	}
-	Sleep(30);
 	return nullptr;
+	Sleep(30);
+}
+
+Input InputHandler::HandleTitleInput()
+{
+	for (auto& key : m_vecKeys)
+	{
+		bool isDown = (GetAsyncKeyState(key.vk) & 0x8000) != 0;
+		if (isDown)
+			return key.key;
+	}
+	return Input::NONE;
+	Sleep(30);
 }

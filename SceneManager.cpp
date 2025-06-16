@@ -14,14 +14,14 @@ GameScene SceneManager::sceneList[] =
 	GameScene(),
 };
 
-SceneManager::SceneManager()
-	: stageNum(0)
-	, isTitleScene(true)
-	, currentGameScene(nullptr)
-	, titleScene(new TitleScene)
-	, resolution{}
+SceneManager::SceneManager() : Single()
+, stageNum(0)
+, isTitleScene(true)
+, currentGameScene(nullptr)
+, titleScene(new TitleScene)
+, resolution{}
 {
-	resolution = GetConsoleResolution();
+resolution = GetConsoleResolution();
 }
 
 void SceneManager::RunScene()
@@ -47,7 +47,7 @@ void SceneManager::RunScene()
 
 void SceneManager::ChangeScene(int sceneNum)
 {
-	*currentGameScene = SceneManager::sceneList[sceneNum];
+ 	*currentGameScene = SceneManager::sceneList[sceneNum];
 	currentGameScene->InitScene();
 }
 

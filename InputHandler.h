@@ -6,8 +6,7 @@ class ICommand;
 struct InputKey
 {
 	int vk;
-	Dir dir;
-
+	Input key;
 };
 class InputHandler
 {
@@ -15,6 +14,7 @@ public:
 	InputHandler();
 public:
 	ICommand* HandleInput();
+	Input HandleTitleInput();
 	std::vector<InputKey> m_vecKeys;
 };
 

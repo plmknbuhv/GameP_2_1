@@ -17,10 +17,11 @@ Dir circleOffset[14] =
 TitleScene::TitleScene()
 	: startSnake(nullptr)
 	, endSnake(nullptr)
+	, inputHandler(nullptr)
 	, circleNum()
-	, inputHandler()
 	, startButtonPos()
 	, overButtonPos()
+	, currentButton()
 	, resolution()
 {
 	circleNum = 0;
@@ -30,12 +31,18 @@ TitleScene::TitleScene()
 	int x = resolution.x / 4;
 	startButtonPos = { x, y };
 	overButtonPos = { x + 40, y };
+	currentButton = Dir::LEFT;
+
+	inputHandler = new InputHandler;
+	startSnake = new Snake(); // 둘 다 딜리트 해줘야 함
+	endSnake = new Snake();
 }
 
 void TitleScene::InitScene()
 {
 	startSnake->InitSnake({ startButtonPos.x+2, startButtonPos.y});
-	endSnake->InitSnake({ startButtonPos.x+2, startButtonPos.y});
+	startSnake->isCanRender = true;
+	endSnake->InitSnake({ overButtonPos.x+2, overButtonPos.y});
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -49,13 +56,25 @@ void TitleScene::InitScene()
 
 void TitleScene::Update()
 {
-	ICommand* cmd = m_inputHandler->HandleInput();
-	if (cmd != nullptr)
+	Input dir = inputHandler->HandleTitleInput();
+	if (dir == Input::SPACE)
 	{
-		cmd->Execute(m_player);
-		delete cmd;
+		Gotoxy(9, 9);
+		cout << (int)currentButton;
+		if (currentButton == Dir::RIGHT)
+		{
+			exit(0);
+		}
+		else if (currentButton == Dir::LEFT)
+		{
+			Single* single = SceneManager::GetInst();
+			SceneManager* manager = dynamic_cast<SceneManager*>(single);
+			manager->ChangeScene(1);
+		}
 	}
-
+	else if (dir != Input::NONE)
+		currentButton = (Dir)dir;
+	
 	startSnake->MoveSnake(circleOffset[circleNum]);
 	endSnake->MoveSnake(circleOffset[circleNum]);
 	circleNum++;
@@ -65,6 +84,7 @@ void TitleScene::Update()
 
 void TitleScene::Render()
 {
+	// 타이틀 그리기
 	int y = resolution.y / 3;
 	Gotoxy(0, y);
 	int coutMode = _setmode(_fileno(stdout), _O_U16TEXT);
@@ -78,10 +98,26 @@ void TitleScene::Render()
 
 	int wcoutMode = _setmode(_fileno(stdout), coutMode);
 
+	// 버튼 그리기
 	Gotoxy(startButtonPos);
 	cout << "게임시작";
 	Gotoxy(overButtonPos);
 	cout << "게임종료";
 
-	snake.Render();
+	// 뱀 그리기
+	switch (currentButton)
+	{
+	case Dir::LEFT:
+		startSnake->isCanRender = true;
+		endSnake->isCanRender = false;
+		break;
+	case Dir::RIGHT:
+		startSnake->isCanRender = false;
+		endSnake->isCanRender = true;
+		break;
+	case Dir::NONE:
+		break;
+	}
+	startSnake->Render();
+	endSnake->Render();
 }

@@ -2,8 +2,9 @@
 #include "Scene.h"
 #include "GameScene.h"
 #include "TitleScene.h"
+#include "Single.h"
 
-class SceneManager
+class SceneManager : public Single
 {
 public:
 	SceneManager();
