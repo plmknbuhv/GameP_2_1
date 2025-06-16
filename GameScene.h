@@ -1,6 +1,6 @@
 #pragma once
 #include "Scene.h"
-#include "GameObject.h"
+#include "Actor.h"
 #include <vector>
 using std::vector;
 
@@ -11,6 +11,6 @@ public:
 	void Update() override;
 	void Render() override;
 private:
-	vector<GameObject> ObjList;
+	vector<Actor> ObjList;
 };
 

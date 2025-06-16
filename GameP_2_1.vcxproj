@@ -129,10 +129,13 @@
   <ItemGroup>
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="GameLogic.cpp" />
-    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Actor.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="ICommand.cpp" />
+    <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MoveCommand.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Snake.cpp" />
@@ -140,10 +143,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Console.h" />
+    <ClInclude Include="Enums.h" />
     <ClInclude Include="GameLogic.h" />
-    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Actor.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="ICommand.h" />
+    <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MoveCommand.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Snake.h" />

@@ -22,6 +22,14 @@ void SetConsoleSettings(int width,
 	}
 }
 
+void HideCursor()
+{
+	CONSOLE_CURSOR_INFO cursorInfo = { 0, };
+	cursorInfo.dwSize = 1; //커서 굵기 (1 ~ 100)
+	cursorInfo.bVisible = FALSE; //커서 Visible TRUE(보임) FALSE(숨김)
+	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
+}
+
 void SetLockResize()
 {
 	HWND hwnd = GetConsoleWindow();
@@ -41,6 +49,13 @@ void Gotoxy(int x, int y)
 {
 	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE); // 출력의 권한을 가져와
 	COORD Cur = { x, y }; // 유니폼 이니셜라이저
+	SetConsoleCursorPosition(handle, Cur);
+}
+
+void Gotoxy(POS pos)
+{
+	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE); // 출력의 권한을 가져와
+	COORD Cur = { pos.x, pos.y }; // 유니폼 이니셜라이저
 	SetConsoleCursorPosition(handle, Cur);
 }
 
@@ -68,13 +83,13 @@ void SetColor(COLOR _textcolor, COLOR _bgcolor)
 		(bgcolor << 4) | textcolor);
 }
 
-COORD GetConsoleResolution()
+POS GetConsoleResolution()
 {
 	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
 	CONSOLE_SCREEN_BUFFER_INFO buf;
 	GetConsoleScreenBufferInfo(handle, &buf);
-	short width  = buf.srWindow.Right - buf.srWindow.Left + 1;
-	short height = buf.srWindow.Bottom - buf.srWindow.Top + 1;
+	int width  = buf.srWindow.Right - buf.srWindow.Left + 1;
+	int height = buf.srWindow.Bottom - buf.srWindow.Top + 1;
 	return {width , height};
 }
 

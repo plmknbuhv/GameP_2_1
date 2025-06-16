@@ -1,7 +1,7 @@
 #pragma once
-#include "GameObject.h"
+#include "Actor.h"
 
-class Map : public GameObject
+class Map : public Actor
 {
 };
 

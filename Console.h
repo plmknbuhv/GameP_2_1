@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "GameLogic.h" // 헤더의 순서는 중요하다.
 using std::cout;
 using std::cin;
 using std::wcout;
@@ -17,7 +18,9 @@ void SetConsoleSettings(int width,
 	const std::wstring& title);
 void SetLockResize();
 void Gotoxy(int x, int y);
+void Gotoxy(POS pos);
 BOOL IsGotoxy(int x, int y);
+void HideCursor();
 
 COORD GetCursorPos();
 void SetCursorVisual(bool isVis, DWORD size);
@@ -29,6 +32,6 @@ enum class COLOR
     LIGHT_YELLOW, WHITE, END
 };
 void SetColor(COLOR textcolor = COLOR::WHITE, COLOR bgcolor = COLOR::BLACK);
-COORD GetConsoleResolution();
+POS GetConsoleResolution();
 void FrameSync(unsigned int _frame);
 void SetConsoleFont(LPCWSTR _fontname, COORD _size, UINT _weight);

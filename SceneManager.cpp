@@ -1,6 +1,5 @@
 #include "SceneManager.h"
-#include "TitleScene.h"
-#include "GameScene.h"
+#include "Console.h"
 
 GameScene SceneManager::sceneList[] =
 {
@@ -15,28 +14,66 @@ GameScene SceneManager::sceneList[] =
 	GameScene(),
 };
 
+SceneManager::SceneManager()
+	: stageNum(0)
+	, isTitleScene(true)
+	, currentGameScene(nullptr)
+	, titleScene(new TitleScene)
+	, resolution{}
+{
+	resolution = GetConsoleResolution();
+}
+
 void SceneManager::RunScene()
 {
-	ChangeScene(stageNum++);
+	ChangeTitleScene(true);
 
 	while (true)
 	{
-		UpdateScene();
-		RenderScene();
+		if (isTitleScene)
+		{
+			UpdateTitleScene();
+			RenderTitleScene();
+		}
+		else
+		{
+			UpdateScene();
+			RenderScene();
+		}
+
+		FrameSync(60);
 	}
 }
 
 void SceneManager::ChangeScene(int sceneNum)
 {
-	currentScene = SceneManager::sceneList[sceneNum];
+	*currentGameScene = SceneManager::sceneList[sceneNum];
+	currentGameScene->InitScene();
+}
+
+void SceneManager::ChangeTitleScene(bool isTitle)
+{
+	isTitleScene = isTitle;
+	if (isTitle)
+		titleScene->InitScene();
+}
+
+void SceneManager::UpdateTitleScene()
+{
+	titleScene->Update();
+}
+
+void SceneManager::RenderTitleScene()
+{
+	titleScene->Render();
 }
 
 void SceneManager::UpdateScene()
 {
-	currentScene.Update();
+	currentGameScene->Update();
 }
 
 void SceneManager::RenderScene()
 {
-	currentScene.Render();
+	currentGameScene->Render();
 }

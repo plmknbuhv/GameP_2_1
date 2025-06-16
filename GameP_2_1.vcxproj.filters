@@ -23,6 +23,9 @@
     <Filter Include="99_Headers">
       <UniqueIdentifier>{782b6b6b-8c32-430b-85a0-2ca92618190f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07_Module\Command">
+      <UniqueIdentifier>{c579a6f7-c145-44a2-b466-47562d9c05a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -37,52 +40,73 @@
     <ClCompile Include="SceneManager.cpp">
       <Filter>02_Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>01_Core</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
+    <ClCompile Include="Actor.cpp">
       <Filter>03_Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Console.cpp">
-      <Filter>01_Core</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
       <Filter>03_Object</Filter>
     </ClCompile>
+    <ClCompile Include="Console.cpp">
+      <Filter>07_Module</Filter>
+    </ClCompile>
+    <ClCompile Include="ICommand.cpp">
+      <Filter>07_Module\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandler.cpp">
+      <Filter>07_Module\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveCommand.cpp">
+      <Filter>07_Module\Command</Filter>
+    </ClCompile>
     <ClCompile Include="GameScene.cpp">
-      <Filter>01_Core</Filter>
+      <Filter>04_Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>04_Scene</Filter>
     </ClCompile>
     <ClCompile Include="TitleScene.cpp">
-      <Filter>01_Core</Filter>
+      <Filter>04_Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Snake.h">
-      <Filter>99_Headers</Filter>
+    <ClInclude Include="Console.h">
+      <Filter>07_Module</Filter>
     </ClInclude>
     <ClInclude Include="GameLogic.h">
-      <Filter>99_Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>99_Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>99_Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>99_Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Console.h">
-      <Filter>99_Headers</Filter>
+      <Filter>01_Core</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
-      <Filter>99_Headers</Filter>
+      <Filter>03_Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>03_Object</Filter>
     </ClInclude>
     <ClInclude Include="GameScene.h">
+      <Filter>04_Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>04_Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Snake.h">
+      <Filter>03_Object</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>02_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ICommand.h">
+      <Filter>07_Module\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandler.h">
+      <Filter>07_Module\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveCommand.h">
+      <Filter>07_Module\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Enums.h">
       <Filter>99_Headers</Filter>
     </ClInclude>
     <ClInclude Include="TitleScene.h">
-      <Filter>99_Headers</Filter>
+      <Filter>04_Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
