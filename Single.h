@@ -4,7 +4,7 @@
 class Single  
 {  
 protected:  
-Single();  
+	Single();
 virtual ~Single() = default;
 public:  
 static Single* GetInst()  

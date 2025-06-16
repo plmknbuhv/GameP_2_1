@@ -1,18 +1,10 @@
 #include "SceneManager.h"
 #include "Console.h"
 
-GameScene SceneManager::sceneList[] =
+GameScene* SceneManager::sceneList[] =
 {
-	GameScene(),
-	GameScene(),
-	GameScene(),
-	GameScene(),
-	GameScene(),
-	GameScene(),
-	GameScene(),
-	GameScene(),
-	GameScene(),
-};
+	new GameScene(1),
+}; // 딜리트 해야함
 
 SceneManager::SceneManager() : Single()
 , stageNum(0)
@@ -26,36 +18,35 @@ resolution = GetConsoleResolution();
 
 void SceneManager::RunScene()
 {
-	ChangeTitleScene(true);
+	ChangeTitleScene();
 
 	while (true)
 	{
-		if (isTitleScene)
-		{
-			UpdateTitleScene();
-			RenderTitleScene();
-		}
-		else
-		{
-			UpdateScene();
-			RenderScene();
-		}
+		UpdateScene();
+		RenderScene();
 
 		FrameSync(60);
 	}
 }
 
-void SceneManager::ChangeScene(int sceneNum)
+void SceneManager::ChangeGameScene()
 {
- 	*currentGameScene = SceneManager::sceneList[sceneNum];
-	currentGameScene->InitScene();
+	Gotoxy(9, 9);
+	cout << stageNum;
+	//currentGameScene = sceneList[stageNum];
+	//currentGameScene->InitScene();
+} 
+
+void SceneManager::ChangeTitleScene()
+{
+	currentGameScene = titleScene;
+	titleScene->InitScene();
 }
 
-void SceneManager::ChangeTitleScene(bool isTitle)
+void SceneManager::ChangeNextStage()
 {
-	isTitleScene = isTitle;
-	if (isTitle)
-		titleScene->InitScene();
+	stageNum++;
+	currentGameScene = SceneManager::sceneList[stageNum];
 }
 
 void SceneManager::UpdateTitleScene()

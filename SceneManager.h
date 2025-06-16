@@ -10,19 +10,20 @@ public:
 	SceneManager();
 public:
 	void RunScene();
-	void ChangeScene(int sceneNum);
-	void ChangeTitleScene(bool isTitle);
+	void ChangeGameScene();
+	void ChangeTitleScene();
 	void RenderTitleScene();
 	void UpdateTitleScene();
+	void ChangeNextStage();
 private:
 	void UpdateScene();
 	void RenderScene();
 private:
 	int stageNum;
 	bool isTitleScene;
-	GameScene* currentGameScene;
+	Scene* currentGameScene;
 	TitleScene* titleScene;
 	POS resolution;
-	static GameScene sceneList[10];
+	static GameScene* sceneList[];
 };
 

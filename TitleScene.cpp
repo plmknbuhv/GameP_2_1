@@ -59,8 +59,6 @@ void TitleScene::Update()
 	Input dir = inputHandler->HandleTitleInput();
 	if (dir == Input::SPACE)
 	{
-		Gotoxy(9, 9);
-		cout << (int)currentButton;
 		if (currentButton == Dir::RIGHT)
 		{
 			exit(0);
@@ -69,7 +67,7 @@ void TitleScene::Update()
 		{
 			Single* single = SceneManager::GetInst();
 			SceneManager* manager = dynamic_cast<SceneManager*>(single);
-			manager->ChangeScene(1);
+			manager->ChangeGameScene();
 		}
 	}
 	else if (dir != Input::NONE)

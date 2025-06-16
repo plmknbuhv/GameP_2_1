@@ -7,6 +7,8 @@ using std::vector;
 class GameScene : public Scene
 {
 public:
+	GameScene(int stageNum);
+public:
 	void InitScene() override;
 	void Update() override;
 	void Render() override;
