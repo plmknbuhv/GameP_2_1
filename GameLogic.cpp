@@ -3,6 +3,6 @@
 
 void Init()
 {
-	SetConsoleSettings(850, 750, false, TEXT("GampSnakeeeee"));
+	SetConsoleSettings(600, 600, false, TEXT("GampSnakeeeee"));
 	SetCursorVisual(false, 50);
 }

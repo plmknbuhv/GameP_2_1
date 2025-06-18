@@ -12,15 +12,12 @@ public:
 	void RunScene();
 	void ChangeGameScene();
 	void ChangeTitleScene();
-	void RenderTitleScene();
-	void UpdateTitleScene();
 	void ChangeNextStage();
 private:
 	void UpdateScene();
 	void RenderScene();
 private:
 	int stageNum;
-	bool isTitleScene;
 	Scene* currentGameScene;
 	TitleScene* titleScene;
 	POS resolution;

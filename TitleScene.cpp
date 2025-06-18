@@ -28,14 +28,16 @@ TitleScene::TitleScene()
 
 	resolution = GetConsoleResolution();
 	int y = resolution.y / 3 * 2;
-	int x = resolution.x / 4;
+	int x = resolution.x / 3.8f;
 	startButtonPos = { x, y };
-	overButtonPos = { x + 40, y };
+	overButtonPos = { x + 28, y };
 	currentButton = Dir::LEFT;
 
 	inputHandler = new InputHandler;
 	startSnake = new Snake(); // 둘 다 딜리트 해줘야 함
+	startSnake->isTitleSnake = true;
 	endSnake = new Snake();
+	endSnake->isTitleSnake = true;
 }
 
 void TitleScene::InitScene()
@@ -61,6 +63,7 @@ void TitleScene::Update()
 	{
 		if (currentButton == Dir::RIGHT)
 		{
+			system("cls");
 			exit(0);
 		}
 		else if (currentButton == Dir::LEFT)
@@ -73,26 +76,26 @@ void TitleScene::Update()
 	else if (dir != Input::NONE)
 		currentButton = (Dir)dir;
 	
-	startSnake->MoveSnake(circleOffset[circleNum]);
-	endSnake->MoveSnake(circleOffset[circleNum]);
-	circleNum++;
-	if (circleNum >= 14)
-		circleNum = 0;
+	//startSnake->MoveSnake(circleOffset[circleNum]);
+	//endSnake->MoveSnake(circleOffset[circleNum]);
+	//circleNum++;
+	//if (circleNum >= 14)
+	//	circleNum = 0;
 }
 
 void TitleScene::Render()
 {
 	// 타이틀 그리기
-	int y = resolution.y / 3;
+	int y = resolution.y / 4;
 	Gotoxy(0, y);
 	int coutMode = _setmode(_fileno(stdout), _O_U16TEXT);
 
-	wcout << L"                  ███████╗███╗   ██╗ █████╗ ██╗  ██╗███████╗███████╗███████╗███████╗" << endl;
-	wcout << L"                  ██╔════╝████╗  ██║██╔══██╗██║ ██╔╝██╔════╝██╔════╝██╔════╝██╔════╝" << endl;
-	wcout << L"                  ███████╗██╔██╗ ██║███████║█████╔╝ █████╗  █████╗  █████╗  █████╗  " << endl;
-	wcout << L"                  ╚════██║██║╚██╗██║██╔══██║██╔═██╗ ██╔══╝  ██╔══╝  ██╔══╝  ██╔══╝  " << endl;
-	wcout << L"                  ███████║██║ ╚████║██║  ██║██║  ██╗███████╗███████╗███████╗███████╗" << endl;
-	wcout << L"                  ╚══════╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝╚══════╝" << endl;
+	wcout << L"      ███████╗███╗   ██╗ █████╗ ██╗  ██╗███████╗███████╗███████╗" << endl;
+	wcout << L"      ██╔════╝████╗  ██║██╔══██╗██║ ██╔╝██╔════╝██╔════╝██╔════╝" << endl;
+	wcout << L"      ███████╗██╔██╗ ██║███████║█████╔╝ █████╗  █████╗  █████╗  " << endl;
+	wcout << L"      ╚════██║██║╚██╗██║██╔══██║██╔═██╗ ██╔══╝  ██╔══╝  ██╔══╝  " << endl;
+	wcout << L"      ███████║██║ ╚████║██║  ██║██║  ██╗███████╗███████╗███████╗" << endl;
+	wcout << L"      ╚══════╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝" << endl;
 
 	int wcoutMode = _setmode(_fileno(stdout), coutMode);
 

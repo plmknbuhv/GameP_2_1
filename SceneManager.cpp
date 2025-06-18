@@ -3,12 +3,12 @@
 
 GameScene* SceneManager::sceneList[] =
 {
-	new GameScene(1),
+	new GameScene(1, 4
+	),
 }; // 딜리트 해야함
 
 SceneManager::SceneManager() : Single()
 , stageNum(0)
-, isTitleScene(true)
 , currentGameScene(nullptr)
 , titleScene(new TitleScene)
 , resolution{}
@@ -31,10 +31,8 @@ void SceneManager::RunScene()
 
 void SceneManager::ChangeGameScene()
 {
-	Gotoxy(9, 9);
-	cout << stageNum;
-	//currentGameScene = sceneList[stageNum];
-	//currentGameScene->InitScene();
+	currentGameScene = sceneList[stageNum];
+	currentGameScene->InitScene();
 } 
 
 void SceneManager::ChangeTitleScene()
@@ -47,16 +45,6 @@ void SceneManager::ChangeNextStage()
 {
 	stageNum++;
 	currentGameScene = SceneManager::sceneList[stageNum];
-}
-
-void SceneManager::UpdateTitleScene()
-{
-	titleScene->Update();
-}
-
-void SceneManager::RenderTitleScene()
-{
-	titleScene->Render();
 }
 
 void SceneManager::UpdateScene()
