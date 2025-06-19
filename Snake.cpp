@@ -4,11 +4,12 @@
 #include "ICommand.h"
 #include <iostream>
 
-Snake::Snake()
+Snake::Snake(Map* map)
 	: inputHandler(nullptr)
 	, isCanRender(false)
 	, isTitleSnake(false)
 	, beforeBody()
+	, map(map)
 {
 	inputHandler = new InputHandler;
 }
@@ -40,14 +41,8 @@ POS Snake::GetSnakeHead()
 	return location.front();
 }
 
-void Snake::HandlePressedMove()
-{
-}
-
 void Snake::MoveSnake(Dir dir)
-{	// 움직이는건 여기서 하고 이동 가능 여부는 따로 판단
-	beforeBody = location.back();
-
+{	
 	POS nextPos;
 	switch (dir)
 	{
@@ -58,16 +53,23 @@ void Snake::MoveSnake(Dir dir)
 		nextPos = { 0, 1 };
 		break;
 	case Dir::LEFT:
-		nextPos = { -2, 0 };
+		nextPos = { -1, 0 };
 		break;
 	case Dir::RIGHT:
-		nextPos = { 2, 0 };
+		nextPos = { 1, 0 };
 		break;
 	default:
 		return;
 		break;
 	}
 
+	if (map != nullptr && 
+		(!map->CheckCanMove(location.front() + nextPos)
+		|| !CheckCanMove(location.front() + nextPos)))
+		return;
+
+	isFirstMove = !isFirstMove;
+	beforeBody = location.back();
 	location.push_front(location.front() + nextPos);
 
 	location.pop_back();
@@ -76,6 +78,17 @@ void Snake::MoveSnake(Dir dir)
 void Snake::AddSnakeBody()
 {
 	location.push_back(beforeBody);
+}
+
+bool Snake::CheckCanMove(const POS& nextPos)
+{
+	for (auto p : location)
+	{
+		if (p == nextPos)
+			return false;
+	}
+
+	return true;
 }
 
 void Snake::Update()
@@ -93,34 +106,38 @@ void Snake::Update()
 void Snake::Render()
 {
 	if (isTitleSnake)
-		Gotoxy(beforeBody.x, beforeBody.y);
+		Gotoxy((beforeBody.x * 2), beforeBody.y);
 	else
-		Gotoxy(beforeBody.x + 20, beforeBody.y + 20);
+		Gotoxy((beforeBody.x * 2) + 20, beforeBody.y + 20);
 	cout << " ";
 	RenderSnake(location);
 }
 
 void Snake::RenderSnake(std::deque<POS> q)
 {
-	// int num = 0;
+	int cnt = isFirstMove ? 0 : 1;
 	while (!q.empty())
 	{
 		if (isTitleSnake)
-			Gotoxy(q.back().x, q.back().y);
+			Gotoxy((q.back().x * 2), q.back().y);
 		else
-			Gotoxy(q.back().x + 20, q.back().y + 20);
+			Gotoxy((q.back().x * 2) + 20, q.back().y + 20);
 		if (isCanRender)
 		{
-			//cout << num;
-			//num++;
 			if (q.size() == 1)
 				cout << "●";
 			else
-				cout << "□";
+			{
+				if (cnt % 2 == 0)
+					cout << "□";
+				else
+					cout << "■";
+			}
 		}
 		else
 			cout << " ";
 
 		q.pop_back();
+		cnt++;
 	}
 }

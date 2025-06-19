@@ -34,17 +34,17 @@ TitleScene::TitleScene()
 	currentButton = Dir::LEFT;
 
 	inputHandler = new InputHandler;
-	startSnake = new Snake(); // 둘 다 딜리트 해줘야 함
+	startSnake = new Snake(nullptr); // 둘 다 딜리트 해줘야 함
 	startSnake->isTitleSnake = true;
-	endSnake = new Snake();
+	endSnake = new Snake(nullptr);
 	endSnake->isTitleSnake = true;
 }
 
 void TitleScene::InitScene()
 {
-	startSnake->InitSnake({ startButtonPos.x-2, startButtonPos.y+1});
+	startSnake->InitSnake({ startButtonPos.x / 2 - 1, startButtonPos.y+1});
 	startSnake->isCanRender = true;
-	endSnake->InitSnake({ overButtonPos.x-2, overButtonPos.y+1});
+	endSnake->InitSnake({ overButtonPos.x / 2 - 1, overButtonPos.y + 1});
 
 	for (int i = 0; i < 4; i++)
 	{

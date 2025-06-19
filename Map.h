@@ -12,6 +12,7 @@ public:
 	void Render() override;
 public:
 	void GetTailPos(POS& tailPos);
+	bool CheckCanMove(const POS& nextPos);
 private:
 	char gameMap[10][16];
 	POS tailPos;

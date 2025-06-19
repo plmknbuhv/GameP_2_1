@@ -50,7 +50,7 @@ void Map::Render()
 	{
 		for (int j = 0; j < 16; j++)
 		{
-			Gotoxy((j*2) + 21, i + 20);
+			Gotoxy((j*2) + 20, i + 20);
 			if (gameMap[i][j] == '1')
 				cout << "бс";
 			else if (gameMap[i][j] == '3')
@@ -62,4 +62,9 @@ void Map::Render()
 void Map::GetTailPos(POS& tailPos)
 {
 	tailPos = this->tailPos;
+}
+
+bool Map::CheckCanMove(const POS& nextPos)
+{
+	return (gameMap[nextPos.y][nextPos.x] != '1');
 }

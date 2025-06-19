@@ -1,7 +1,5 @@
 #include "MoveCommand.h"
 #include "Snake.h"
-#include "Console.h"
-#include <iostream>
 
 MoveCommand::MoveCommand(Dir _dir, bool isPressed)
 	: m_dir(_dir)
@@ -16,10 +14,5 @@ void MoveCommand::Execute(Actor* _actor)
 	{
 		if (isPressed)
 			snake->MoveSnake(m_dir);
-		else
-		{
-			Gotoxy(0, 0);
-			std::cout << isPressed;
-		}
 	}
 }

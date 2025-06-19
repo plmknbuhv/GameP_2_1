@@ -13,7 +13,6 @@ InputHandler::InputHandler()
 
 ICommand* InputHandler::HandleInput()
 {
-	Sleep(15);
 	for (auto& key : m_vecKeys)
 	{
 		bool isPressed = (GetAsyncKeyState(key.vk) & 0x8000) != 0;
@@ -27,8 +26,6 @@ ICommand* InputHandler::HandleInput()
 			key.wasPressed = isPressed;
 			return new MoveCommand((Dir)key.key, false);
 		}
-
-		
 	}
 	return nullptr;
 }
