@@ -7,6 +7,7 @@ struct InputKey
 {
 	int vk;
 	Input key;
+	bool wasPressed;
 };
 class InputHandler
 {

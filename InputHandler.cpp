@@ -13,14 +13,24 @@ InputHandler::InputHandler()
 
 ICommand* InputHandler::HandleInput()
 {
+	Sleep(15);
 	for (auto& key : m_vecKeys)
 	{
-		bool isDown = (GetAsyncKeyState(key.vk) & 0x8000) != 0;
-		if (isDown)
-			return new MoveCommand((Dir)key.key);
+		bool isPressed = (GetAsyncKeyState(key.vk) & 0x8000) != 0;
+		if (isPressed && !key.wasPressed)
+		{
+			key.wasPressed = isPressed;
+			return new MoveCommand((Dir)key.key, true);
+		}
+		else if (!isPressed && key.wasPressed)
+		{
+			key.wasPressed = isPressed;
+			return new MoveCommand((Dir)key.key, false);
+		}
+
+		
 	}
 	return nullptr;
-	Sleep(30);
 }
 
 Input InputHandler::HandleTitleInput()
@@ -32,5 +42,4 @@ Input InputHandler::HandleTitleInput()
 			return key.key;
 	}
 	return Input::NONE;
-	Sleep(30);
 }

@@ -6,6 +6,9 @@
 
 Snake::Snake()
 	: inputHandler(nullptr)
+	, isCanRender(false)
+	, isTitleSnake(false)
+	, beforeBody()
 {
 	inputHandler = new InputHandler;
 }
@@ -13,17 +16,17 @@ Snake::Snake()
 void Snake::InitSnake(POS headPos)
 {
 	while (!location.empty())
-		location.pop();
-	location.push(headPos);
+		location.pop_back();
+	location.push_front(headPos);
 }
 
 void Snake::SpawnSnake(POS tailPos, int bodyCount)
 {
-	InitSnake({ tailPos.x + 2, tailPos.y });
+	InitSnake(tailPos);
 
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < bodyCount; i++)
 	{
-		MoveSnake(Dir::LEFT);
+		MoveSnake(Dir::RIGHT);
 		AddSnakeBody();
 	}
 }
@@ -34,11 +37,16 @@ void Snake::Init()
 
 POS Snake::GetSnakeHead()
 {
-	return location.back();
+	return location.front();
+}
+
+void Snake::HandlePressedMove()
+{
 }
 
 void Snake::MoveSnake(Dir dir)
 {	// 움직이는건 여기서 하고 이동 가능 여부는 따로 판단
+	beforeBody = location.back();
 
 	POS nextPos;
 	switch (dir)
@@ -56,20 +64,18 @@ void Snake::MoveSnake(Dir dir)
 		nextPos = { 2, 0 };
 		break;
 	default:
-		nextPos = { 0, 0 };
+		return;
 		break;
 	}
 
-	location.push(location.back() + nextPos);
+	location.push_front(location.front() + nextPos);
 
-	beforeBody = location.front();
-	location.pop();
+	location.pop_back();
 }
 
 void Snake::AddSnakeBody()
 {
-	location.push(beforeBody);
-	cout << beforeBody.x << beforeBody.y << "\n";
+	location.push_back(beforeBody);
 }
 
 void Snake::Update()
@@ -82,27 +88,27 @@ void Snake::Update()
 		cmd->Execute(this);
 		delete cmd;
 	}
-
-
 }
 
 void Snake::Render()
 {
-	Gotoxy(beforeBody.x, beforeBody.y);
+	if (isTitleSnake)
+		Gotoxy(beforeBody.x, beforeBody.y);
+	else
+		Gotoxy(beforeBody.x + 20, beforeBody.y + 20);
 	cout << " ";
 	RenderSnake(location);
 }
 
-void Snake::RenderSnake(std::queue<POS> q)
+void Snake::RenderSnake(std::deque<POS> q)
 {
-	int num = 0;
+	// int num = 0;
 	while (!q.empty())
 	{
-		Gotoxy(q.front().x, q.front().y);
-		//if (isTitleSnake)
-		//	Gotoxy(q.front().x, q.front().y);
-		//else
-		//	Gotoxy(q.front().x + 20, q.front().y + 20);
+		if (isTitleSnake)
+			Gotoxy(q.back().x, q.back().y);
+		else
+			Gotoxy(q.back().x + 20, q.back().y + 20);
 		if (isCanRender)
 		{
 			//cout << num;
@@ -115,6 +121,6 @@ void Snake::RenderSnake(std::queue<POS> q)
 		else
 			cout << " ";
 
-		q.pop();
+		q.pop_back();
 	}
 }

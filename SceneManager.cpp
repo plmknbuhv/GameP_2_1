@@ -3,8 +3,7 @@
 
 GameScene* SceneManager::sceneList[] =
 {
-	new GameScene(1, 4
-	),
+	new GameScene(1, 2),
 }; // 딜리트 해야함
 
 SceneManager::SceneManager() : Single()

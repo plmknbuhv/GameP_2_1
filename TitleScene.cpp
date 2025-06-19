@@ -42,9 +42,9 @@ TitleScene::TitleScene()
 
 void TitleScene::InitScene()
 {
-	startSnake->InitSnake({ startButtonPos.x+2, startButtonPos.y});
+	startSnake->InitSnake({ startButtonPos.x-2, startButtonPos.y+1});
 	startSnake->isCanRender = true;
-	endSnake->InitSnake({ overButtonPos.x+2, overButtonPos.y});
+	endSnake->InitSnake({ overButtonPos.x-2, overButtonPos.y+1});
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -76,11 +76,11 @@ void TitleScene::Update()
 	else if (dir != Input::NONE)
 		currentButton = (Dir)dir;
 	
-	//startSnake->MoveSnake(circleOffset[circleNum]);
-	//endSnake->MoveSnake(circleOffset[circleNum]);
-	//circleNum++;
-	//if (circleNum >= 14)
-	//	circleNum = 0;
+	startSnake->MoveSnake(circleOffset[circleNum]);
+	endSnake->MoveSnake(circleOffset[circleNum]);
+	circleNum++;
+	if (circleNum >= 14)
+		circleNum = 0;
 }
 
 void TitleScene::Render()
