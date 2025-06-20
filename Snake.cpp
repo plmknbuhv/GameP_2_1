@@ -68,7 +68,6 @@ void Snake::MoveSnake(Dir dir)
 		|| !CheckCanMove(location.front() + nextPos)))
 		return;
 
-	isFirstMove = !isFirstMove;
 	beforeBody = location.back();
 	location.push_front(location.front() + nextPos);
 
@@ -95,23 +94,41 @@ void Snake::Update()
 {
 	if (isTitleSnake) return;
 
+	ApplyGravity();
+
 	ICommand* cmd = inputHandler->HandleInput();
 	if (cmd != nullptr)
 	{
 		cmd->Execute(this);
 		delete cmd;
 	}
-
-	ApplyGravity();
 }
 
 void Snake::ApplyGravity()
 {
 	bool isCanDrop = true;
-	for (auto p : location)
+	while(isCanDrop == true)
 	{
-		if (CheckCanMove(p - POS(0, 1))
-			isCanDrop = false;
+		isCanDrop = true;
+
+		for (auto p : location)
+		{
+			if (map->CheckCanMove(p - POS(0, 1)) == false) // 밑에 공간이 없다면
+			{
+				isCanDrop = false;
+				break;
+			}
+		}
+
+		if (isCanDrop == false) return;
+
+		for (auto& p : location)
+		{
+			beforeLocation.push_back(p);
+			p = p - POS(0, 1);
+		}
+
+		beforeBody = { 0,0 };
 	}
 }
 
@@ -122,12 +139,21 @@ void Snake::Render()
 	else
 		Gotoxy((beforeBody.x * 2) + 20, beforeBody.y + 20);
 	cout << " ";
+
+	for (auto p : beforeLocation)
+	{
+		Gotoxy((p.x * 2) + 20, p.y + 20);
+		cout << " ";
+	}
+	while (!beforeLocation.empty())
+		beforeLocation.pop_back();
+
 	RenderSnake(location);
 }
 
 void Snake::RenderSnake(std::deque<POS> q)
 {
-	int cnt = isFirstMove ? 0 : 1;
+	int cnt = 0;
 	while (!q.empty())
 	{
 		if (isTitleSnake)
@@ -137,13 +163,20 @@ void Snake::RenderSnake(std::deque<POS> q)
 		if (isCanRender)
 		{
 			if (q.size() == 1)
+			{
+				SetColor();
 				cout << "●";
+			}
 			else
 			{
-				if (cnt % 2 == 0)
-					cout << "□";
+				if (cnt % 3 == 0)
+					SetColor(COLOR::RED);
+				else if (cnt % 3 == 1)
+					SetColor(COLOR::YELLOW);
 				else
-					cout << "■";
+					SetColor(COLOR::LIGHT_YELLOW);
+
+				cout << "□";
 			}
 		}
 		else
@@ -152,4 +185,6 @@ void Snake::RenderSnake(std::deque<POS> q)
 		q.pop_back();
 		cnt++;
 	}
+
+	SetColor();
 }

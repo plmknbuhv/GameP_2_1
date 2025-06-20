@@ -25,11 +25,11 @@ public:
 	void ApplyGravity();
 private:
 	std::deque<POS> location;
+	std::deque<POS> beforeLocation;
 	POS beforeBody;
 	InputHandler* inputHandler;
 	Map* map;
 public:
 	bool isCanRender;
 	bool isTitleSnake;
-	bool isFirstMove;
 };
