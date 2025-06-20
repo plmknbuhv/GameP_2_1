@@ -15,16 +15,16 @@ Map::Map(int stageNum)
 	std::ifstream mapFile(filename);
 	if (mapFile.is_open())
 	{
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 13; i++)
 			mapFile >> gameMap[i];
 		mapFile.close();
 	}
 	else
 		std::cout << "¸Ê ¿¡¹Ýµù" << std::endl;
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 13; i++)
 	{
-		for (int j = 0; j < 16; j++)
+		for (int j = 0; j < 23; j++)
 		{
 			if (gameMap[i][j] == '3')
 				endPos = {j, i};
@@ -46,9 +46,9 @@ void Map::Update()
 
 void Map::Render()
 {
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 13; i++)
 	{
-		for (int j = 0; j < 16; j++)
+		for (int j = 0; j < 23; j++)
 		{
 			Gotoxy((j*2) + 20, i + 20);
 			if (gameMap[i][j] == '1')

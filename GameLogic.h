@@ -15,4 +15,9 @@ typedef struct _pos
     {
         return { x + other.x, y + other.y };
     }
+
+    _pos operator - (const _pos& other) const
+    {
+        return { x + other.x, y + other.y };
+    }
 }POS, * PPOS;

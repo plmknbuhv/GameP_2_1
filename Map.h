@@ -14,7 +14,7 @@ public:
 	void GetTailPos(POS& tailPos);
 	bool CheckCanMove(const POS& nextPos);
 private:
-	char gameMap[10][16];
+	char gameMap[13][23];
 	POS tailPos;
 	POS endPos;
 };

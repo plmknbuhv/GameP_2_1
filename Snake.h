@@ -22,6 +22,7 @@ public:
 	void MoveSnake(Dir dir);
 	void AddSnakeBody();
 	bool CheckCanMove(const POS& nextPos);
+	void ApplyGravity();
 private:
 	std::deque<POS> location;
 	POS beforeBody;

@@ -101,6 +101,18 @@ void Snake::Update()
 		cmd->Execute(this);
 		delete cmd;
 	}
+
+	ApplyGravity();
+}
+
+void Snake::ApplyGravity()
+{
+	bool isCanDrop = true;
+	for (auto p : location)
+	{
+		if (CheckCanMove(p - POS(0, 1))
+			isCanDrop = false;
+	}
 }
 
 void Snake::Render()

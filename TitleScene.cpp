@@ -28,7 +28,7 @@ TitleScene::TitleScene()
 
 	resolution = GetConsoleResolution();
 	int y = resolution.y / 3 * 2;
-	int x = resolution.x / 3.8f;
+	int x = resolution.x / 3.45f;
 	startButtonPos = { x, y };
 	overButtonPos = { x + 28, y };
 	currentButton = Dir::LEFT;
@@ -90,12 +90,12 @@ void TitleScene::Render()
 	Gotoxy(0, y);
 	int coutMode = _setmode(_fileno(stdout), _O_U16TEXT);
 
-	wcout << L"      ███████╗███╗   ██╗ █████╗ ██╗  ██╗███████╗███████╗███████╗" << endl;
-	wcout << L"      ██╔════╝████╗  ██║██╔══██╗██║ ██╔╝██╔════╝██╔════╝██╔════╝" << endl;
-	wcout << L"      ███████╗██╔██╗ ██║███████║█████╔╝ █████╗  █████╗  █████╗  " << endl;
-	wcout << L"      ╚════██║██║╚██╗██║██╔══██║██╔═██╗ ██╔══╝  ██╔══╝  ██╔══╝  " << endl;
-	wcout << L"      ███████║██║ ╚████║██║  ██║██║  ██╗███████╗███████╗███████╗" << endl;
-	wcout << L"      ╚══════╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝" << endl;
+	wcout << L"             ███████╗███╗   ██╗ █████╗ ██╗  ██╗███████╗███████╗███████╗" << endl;
+	wcout << L"             ██╔════╝████╗  ██║██╔══██╗██║ ██╔╝██╔════╝██╔════╝██╔════╝" << endl;
+	wcout << L"             ███████╗██╔██╗ ██║███████║█████╔╝ █████╗  █████╗  █████╗  " << endl;
+	wcout << L"             ╚════██║██║╚██╗██║██╔══██║██╔═██╗ ██╔══╝  ██╔══╝  ██╔══╝  " << endl;
+	wcout << L"             ███████║██║ ╚████║██║  ██║██║  ██╗███████╗███████╗███████╗" << endl;
+	wcout << L"             ╚══════╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝" << endl;
 
 	int wcoutMode = _setmode(_fileno(stdout), coutMode);
 
