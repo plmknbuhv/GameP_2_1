@@ -13,6 +13,7 @@ public:
 	void InitScene() override;
 	void Update() override;
 	void Render() override;
+	void StartScene();
 private:
 	vector<Actor*> ObjList;
 	Snake* snake;

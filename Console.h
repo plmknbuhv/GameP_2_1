@@ -22,6 +22,8 @@ void Gotoxy(POS pos);
 BOOL IsGotoxy(int x, int y);
 void HideCursor();
 
+void SimulateMouseWheelScroll(int scrollDelta);
+
 COORD GetCursorPos();
 void SetCursorVisual(bool isVis, DWORD size);
 enum class COLOR

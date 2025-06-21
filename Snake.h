@@ -20,6 +20,7 @@ public:
 public:
 	POS GetSnakeHead();
 	void MoveSnake(Dir dir);
+	void Dead();
 	void AddSnakeBody();
 	bool CheckCanMove(const POS& nextPos);
 	void ApplyGravity();
@@ -31,5 +32,6 @@ private:
 	Map* map;
 public:
 	bool isCanRender;
+	bool isDead;
 	bool isTitleSnake;
 };

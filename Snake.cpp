@@ -8,7 +8,8 @@ Snake::Snake(Map* map)
 	: inputHandler(nullptr)
 	, isCanRender(false)
 	, isTitleSnake(false)
-	, beforeBody()
+	, beforeBody{0, 0}
+	, isDead(false)
 	, map(map)
 {
 	inputHandler = new InputHandler;
@@ -43,6 +44,8 @@ POS Snake::GetSnakeHead()
 
 void Snake::MoveSnake(Dir dir)
 {	
+	if (isDead) return;
+
 	POS nextPos;
 	switch (dir)
 	{
@@ -93,6 +96,7 @@ bool Snake::CheckCanMove(const POS& nextPos)
 void Snake::Update()
 {
 	if (isTitleSnake) return;
+	if (isDead) return;
 
 	ApplyGravity();
 
@@ -128,8 +132,19 @@ void Snake::ApplyGravity()
 			p = p - POS(0, 1);
 		}
 
-		beforeBody = { 0,0 };
+		beforeBody = { 0,0 };	
+
+		if (location.front().y >= 20) // ¹Ù´Ú±îÁö ¶³¾îÁ³´Ù¸é
+		{
+			Dead();
+			return;
+		}
 	}
+}
+
+void Snake::Dead()
+{
+	isDead = true;
 }
 
 void Snake::Render()
@@ -148,7 +163,7 @@ void Snake::Render()
 	while (!beforeLocation.empty())
 		beforeLocation.pop_back();
 
-	RenderSnake(location);
+ 	RenderSnake(location);
 }
 
 void Snake::RenderSnake(std::deque<POS> q)
