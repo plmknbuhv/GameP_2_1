@@ -70,6 +70,9 @@
     <ClCompile Include="Single.cpp">
       <Filter>07_Module</Filter>
     </ClCompile>
+    <ClCompile Include="OverScene.cpp">
+      <Filter>04_Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Console.h">
@@ -116,6 +119,9 @@
     </ClInclude>
     <ClInclude Include="Defines.h">
       <Filter>99_Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="OverScene.h">
+      <Filter>04_Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

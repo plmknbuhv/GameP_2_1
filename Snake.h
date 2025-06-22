@@ -24,6 +24,7 @@ public:
 	void AddSnakeBody();
 	bool CheckCanMove(const POS& nextPos);
 	void ApplyGravity();
+	void Interact();
 private:
 	std::deque<POS> location;
 	std::deque<POS> beforeLocation;
@@ -34,4 +35,5 @@ public:
 	bool isCanRender;
 	bool isDead;
 	bool isTitleSnake;
+	bool isClear;
 };

@@ -2,14 +2,16 @@
 #include "Enums.h"
 #include "Console.h"
 #include "ICommand.h"
+#include "SceneManager.h"
 #include <iostream>
 
 Snake::Snake(Map* map)
 	: inputHandler(nullptr)
 	, isCanRender(false)
 	, isTitleSnake(false)
-	, beforeBody{0, 0}
+	, beforeBody{ 0, -3 }
 	, isDead(false)
+	, isClear(false)
 	, map(map)
 {
 	inputHandler = new InputHandler;
@@ -75,6 +77,29 @@ void Snake::MoveSnake(Dir dir)
 	location.push_front(location.front() + nextPos);
 
 	location.pop_back();
+
+	if (isTitleSnake == false)
+		Interact();
+}
+
+void Snake::Interact()
+{
+	if (!map->CheckCanClear(location.front()))
+		return;
+
+	isClear = true;
+	while (!location.empty())
+	{
+		Render();
+		beforeBody = location.back();
+		location.pop_back();
+		Sleep(75);
+	}
+
+	Sleep(1000);
+	Single* single = SceneManager::GetInst();
+	SceneManager* manager = dynamic_cast<SceneManager*>(single);
+	manager->ChangeNextStage();
 }
 
 void Snake::AddSnakeBody()
@@ -117,7 +142,7 @@ void Snake::ApplyGravity()
 
 		for (auto p : location)
 		{
-			if (map->CheckCanMove(p - POS(0, 1)) == false) // 밑에 공간이 없다면
+			if (map->CheckCanGravity(p - POS(0, 1)) == false) // 밑에 공간이 없다면
 			{
 				isCanDrop = false;
 				break;
@@ -125,6 +150,8 @@ void Snake::ApplyGravity()
 		}
 
 		if (isCanDrop == false) return;
+		Sleep(30);
+		Render();
 
 		for (auto& p : location)
 		{
@@ -132,7 +159,7 @@ void Snake::ApplyGravity()
 			p = p - POS(0, 1);
 		}
 
-		beforeBody = { 0,0 };	
+		beforeBody = { 0, -3 };
 
 		if (location.front().y >= 20) // 바닥까지 떨어졌다면
 		{
@@ -180,7 +207,10 @@ void Snake::RenderSnake(std::deque<POS> q)
 			if (q.size() == 1)
 			{
 				SetColor();
-				cout << "●";
+				if (isClear == false)
+					cout << "●";
+				else
+					cout << "♨";
 			}
 			else
 			{

@@ -4,6 +4,7 @@
 GameScene* SceneManager::sceneList[] =
 {
 	new GameScene(1, 3),
+	new GameScene(2, 3),
 }; // 딜리트 해야함
 
 SceneManager::SceneManager() : Single()
@@ -43,7 +44,13 @@ void SceneManager::ChangeTitleScene()
 void SceneManager::ChangeNextStage()
 {
 	stageNum++;
+	if (stageNum == sizeof(sceneList) / sizeof(sceneList[0]))
+	{
+
+		return;
+	}
 	currentGameScene = SceneManager::sceneList[stageNum];
+	currentGameScene->InitScene();
 }
 
 void SceneManager::UpdateScene()

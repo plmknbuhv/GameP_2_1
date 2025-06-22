@@ -13,6 +13,8 @@ public:
 public:
 	void GetTailPos(POS& tailPos);
 	bool CheckCanMove(const POS& nextPos);
+	bool CheckCanGravity(const POS& nextPos);
+	bool CheckCanClear(const POS& nextPos);
 private:
 	char gameMap[13][23];
 	POS tailPos;

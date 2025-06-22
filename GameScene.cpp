@@ -8,6 +8,7 @@
 GameScene::GameScene(int stageNum, int snakeBodyCount)
 	: snake(nullptr)
 	, tailPos()
+	, stageNum(stageNum)
 	, snakeBodyCount()
 {
 	auto map = new Map(stageNum);
@@ -60,4 +61,7 @@ void GameScene::Render()
 {
 	for (Actor* a : ObjList)
 		a->Render();
+
+	Gotoxy(2,1);
+	cout << stageNum << " 스테이지";
 }

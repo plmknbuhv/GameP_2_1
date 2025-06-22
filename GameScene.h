@@ -20,5 +20,6 @@ private:
 private:
 	POS tailPos;
 	int snakeBodyCount;
+	int stageNum;
 };
 

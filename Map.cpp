@@ -68,3 +68,14 @@ bool Map::CheckCanMove(const POS& nextPos)
 {
 	return (gameMap[nextPos.y][nextPos.x] != '1');
 }
+
+bool Map::CheckCanGravity(const POS& nextPos)
+{
+	return (gameMap[nextPos.y][nextPos.x] != '3'
+		&& gameMap[nextPos.y][nextPos.x] != '1');
+}
+
+bool Map::CheckCanClear(const POS& nextPos)
+{
+	return(gameMap[nextPos.y][nextPos.x] == '3');
+}
