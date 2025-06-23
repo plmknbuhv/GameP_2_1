@@ -9,8 +9,8 @@ Map::Map(int stageNum)
 	: gameMap{}
 	, tailPos{}
 	, endPos{}
+	, stageNum(stageNum)
 {
-	// ¸Ê ºÒ·¯¿À±â
 	std::string filename = std::format("Maps/Stage{}.txt", stageNum);
 	std::ifstream mapFile(filename);
 	if (mapFile.is_open())
@@ -36,7 +36,27 @@ Map::Map(int stageNum)
 
 void Map::Init()
 {
+	std::string filename = std::format("Maps/Stage{}.txt", stageNum);
+	std::ifstream mapFile(filename);
+	if (mapFile.is_open())
+	{
+		for (int i = 0; i < 13; i++)
+			mapFile >> gameMap[i];
+		mapFile.close();
+	}
+	else
+		std::cout << "¸Ê ¿¡¹Ýµù" << std::endl;
 
+	for (int i = 0; i < 13; i++)
+	{
+		for (int j = 0; j < 23; j++)
+		{
+			if (gameMap[i][j] == '3')
+				endPos = { j, i };
+			else if (gameMap[i][j] == '2')
+				tailPos = { j, i };
+		}
+	}
 }
 
 void Map::Update()
@@ -55,6 +75,8 @@ void Map::Render()
 				cout << "¡á";
 			else if (gameMap[i][j] == '3')
 				cout << "¢Í";
+			else if (gameMap[i][j] == '4')
+				cout << "£À";
 		}
 	}
 }
@@ -78,4 +100,14 @@ bool Map::CheckCanGravity(const POS& nextPos)
 bool Map::CheckCanClear(const POS& nextPos)
 {
 	return(gameMap[nextPos.y][nextPos.x] == '3');
+}
+
+bool Map::CheckCanEat(const POS& nextPos)
+{
+	if (gameMap[nextPos.y][nextPos.x] == '4')
+	{
+		gameMap[nextPos.y][nextPos.x] = '0';
+		return true;
+	}
+	return false;
 }

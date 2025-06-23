@@ -84,22 +84,27 @@ void Snake::MoveSnake(Dir dir)
 
 void Snake::Interact()
 {
-	if (!map->CheckCanClear(location.front()))
-		return;
-
-	isClear = true;
-	while (!location.empty())
+	if (map->CheckCanClear(location.front()))
 	{
-		Render();
-		beforeBody = location.back();
-		location.pop_back();
-		Sleep(75);
-	}
+		isClear = true;
+		while (!location.empty())
+		{
+			Render();
+			beforeBody = location.back();
+			location.pop_back();
+			Sleep(80);
+		}
 
-	Sleep(1000);
-	Single* single = SceneManager::GetInst();
-	SceneManager* manager = dynamic_cast<SceneManager*>(single);
-	manager->ChangeNextStage();
+		Sleep(1000);
+		Single* single = SceneManager::GetInst();
+		SceneManager* manager = dynamic_cast<SceneManager*>(single);
+		manager->ChangeNextStage();
+	}
+	else if (map->CheckCanEat(location.front()))
+	{
+		AddSnakeBody();
+		beforeBody = { 0, -3 };
+	}
 }
 
 void Snake::AddSnakeBody()
@@ -161,7 +166,7 @@ void Snake::ApplyGravity()
 
 		beforeBody = { 0, -3 };
 
-		if (location.front().y >= 20) // ¹Ù´Ú±îÁö ¶³¾îÁ³´Ù¸é
+		if (location.front().y >= 16) // ¹Ù´Ú±îÁö ¶³¾îÁ³´Ù¸é
 		{
 			Dead();
 			return;
