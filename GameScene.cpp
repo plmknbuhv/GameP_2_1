@@ -13,7 +13,6 @@ GameScene::GameScene(int stageNum, int snakeBodyCount)
 {
 	auto map = new Map(stageNum);
 	snake = new Snake(map);
-	snake->isCanRender = true;
     POS tail; map->GetTailPos(tail);
 	tailPos = tail;
 	this->snakeBodyCount = snakeBodyCount;

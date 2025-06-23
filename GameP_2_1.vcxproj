@@ -144,6 +144,7 @@
     <ClCompile Include="Single.cpp" />
     <ClCompile Include="Snake.cpp" />
     <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="TitleSnake.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Console.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="Single.h" />
     <ClInclude Include="Snake.h" />
     <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="TitleSnake.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

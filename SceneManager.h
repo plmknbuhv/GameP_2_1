@@ -3,6 +3,7 @@
 #include "GameScene.h"
 #include "TitleScene.h"
 #include "Single.h"
+#include "OverScene.h"
 
 class SceneManager : public Single
 {
@@ -20,6 +21,7 @@ private:
 	int stageNum;
 	Scene* currentGameScene;
 	TitleScene* titleScene;
+	OverScene* gameOverScene;
 	POS resolution;
 	static GameScene* sceneList[];
 };

@@ -8,12 +8,13 @@ GameScene* SceneManager::sceneList[] =
 }; // 딜리트 해야함
 
 SceneManager::SceneManager() : Single()
-, stageNum(0)
-, currentGameScene(nullptr)
-, titleScene(new TitleScene)
-, resolution{}
+	, stageNum(0)
+	, currentGameScene(nullptr)
+	, titleScene(new TitleScene)
+	, gameOverScene(new OverScene)
+	, resolution{}
 {
-resolution = GetConsoleResolution();
+	resolution = GetConsoleResolution();
 }
 
 void SceneManager::RunScene()
@@ -46,11 +47,14 @@ void SceneManager::ChangeNextStage()
 	stageNum++;
 	if (stageNum == sizeof(sceneList) / sizeof(sceneList[0]))
 	{
-
-		return;
+		currentGameScene = gameOverScene;
+		currentGameScene->InitScene();
 	}
-	currentGameScene = SceneManager::sceneList[stageNum];
-	currentGameScene->InitScene();
+	else
+	{
+		currentGameScene = SceneManager::sceneList[stageNum];
+		currentGameScene->InitScene();
+	}
 }
 
 void SceneManager::UpdateScene()

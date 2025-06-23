@@ -34,10 +34,8 @@ TitleScene::TitleScene()
 	currentButton = Dir::LEFT;
 
 	inputHandler = new InputHandler;
-	startSnake = new Snake(nullptr); // 둘 다 딜리트 해줘야 함
-	startSnake->isTitleSnake = true;
-	endSnake = new Snake(nullptr);
-	endSnake->isTitleSnake = true;
+	startSnake = new TitleSnake(); // 둘 다 딜리트 해줘야 함
+	endSnake = new TitleSnake();
 }
 
 void TitleScene::InitScene()
@@ -73,7 +71,7 @@ void TitleScene::Update()
 			manager->ChangeGameScene();
 		}
 	}
-	else if (dir != Input::NONE)
+	else if (dir == Input::RIGHT || dir == Input::LEFT)
 		currentButton = (Dir)dir;
 	
 	startSnake->MoveSnake(circleOffset[circleNum]);

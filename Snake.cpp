@@ -5,10 +5,12 @@
 #include "SceneManager.h"
 #include <iostream>
 
+Snake::Snake()
+{
+}
+
 Snake::Snake(Map* map)
 	: inputHandler(nullptr)
-	, isCanRender(false)
-	, isTitleSnake(false)
 	, beforeBody{ 0, -3 }
 	, isDead(false)
 	, isClear(false)
@@ -33,10 +35,13 @@ void Snake::SpawnSnake(POS tailPos, int bodyCount)
 		MoveSnake(Dir::RIGHT);
 		AddSnakeBody();
 	}
+
+	beforeBody = { 0, -3 };
 }
 
 void Snake::Init()
 {
+	beforeBody = { 0, -3 };
 }
 
 POS Snake::GetSnakeHead()
@@ -78,8 +83,7 @@ void Snake::MoveSnake(Dir dir)
 
 	location.pop_back();
 
-	if (isTitleSnake == false)
-		Interact();
+	Interact();
 }
 
 void Snake::Interact()
@@ -125,7 +129,6 @@ bool Snake::CheckCanMove(const POS& nextPos)
 
 void Snake::Update()
 {
-	if (isTitleSnake) return;
 	if (isDead) return;
 
 	ApplyGravity();
@@ -181,10 +184,7 @@ void Snake::Dead()
 
 void Snake::Render()
 {
-	if (isTitleSnake)
-		Gotoxy((beforeBody.x * 2), beforeBody.y);
-	else
-		Gotoxy((beforeBody.x * 2) + 20, beforeBody.y + 20);
+	Gotoxy((beforeBody.x * 2) + 20, beforeBody.y + 20);
 	cout << " ";
 
 	for (auto p : beforeLocation)
@@ -203,34 +203,27 @@ void Snake::RenderSnake(std::deque<POS> q)
 	int cnt = 0;
 	while (!q.empty())
 	{
-		if (isTitleSnake)
-			Gotoxy((q.back().x * 2), q.back().y);
-		else
-			Gotoxy((q.back().x * 2) + 20, q.back().y + 20);
-		if (isCanRender)
-		{
-			if (q.size() == 1)
-			{
-				SetColor();
-				if (isClear == false)
-					cout << "¡Ü";
-				else
-					cout << "¢Í";
-			}
-			else
-			{
-				if (cnt % 3 == 0)
-					SetColor(COLOR::RED);
-				else if (cnt % 3 == 1)
-					SetColor(COLOR::YELLOW);
-				else
-					SetColor(COLOR::LIGHT_YELLOW);
+		Gotoxy((q.back().x * 2) + 20, q.back().y + 20);
 
-				cout << "¡à";
-			}
+		if (q.size() == 1)
+		{
+			SetColor();
+			if (isClear == false)
+				cout << "¡Ü";
+			else
+				cout << "¢Í";
 		}
 		else
-			cout << " ";
+		{
+			if (cnt % 3 == 0)
+				SetColor(COLOR::RED);
+			else if (cnt % 3 == 1)
+				SetColor(COLOR::YELLOW);
+			else
+				SetColor(COLOR::LIGHT_YELLOW);
+
+			cout << "¡à";
+		}
 
 		q.pop_back();
 		cnt++;

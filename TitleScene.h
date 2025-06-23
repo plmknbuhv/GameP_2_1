@@ -1,7 +1,7 @@
 #pragma once
 #include "Scene.h"
 #include "Actor.h"
-#include "Snake.h"
+#include "TitleSnake.h"
 
 class InputHandler;
 class TitleScene : public Scene
@@ -13,8 +13,8 @@ public :
 	void Update() override;
 	void Render() override;
 private :
-	Snake* startSnake;
-	Snake* endSnake;
+	TitleSnake* startSnake;
+	TitleSnake* endSnake;
 	int circleNum;
 	POS startButtonPos;
 	POS overButtonPos;

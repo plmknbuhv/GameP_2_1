@@ -73,6 +73,9 @@
     <ClCompile Include="OverScene.cpp">
       <Filter>04_Scene</Filter>
     </ClCompile>
+    <ClCompile Include="TitleSnake.cpp">
+      <Filter>03_Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Console.h">
@@ -122,6 +125,9 @@
     </ClInclude>
     <ClInclude Include="OverScene.h">
       <Filter>04_Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleSnake.h">
+      <Filter>03_Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

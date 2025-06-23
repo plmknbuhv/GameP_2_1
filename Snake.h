@@ -9,31 +9,30 @@
 class Snake : public Actor
 {
 public:
+	Snake();
 	Snake(Map* map);
 public:
 	void InitSnake(POS headPos);
 	void SpawnSnake(POS tailPos, int bodyCount);
-	void Init() override;
-	void Update() override;
-	void Render() override;
-	void RenderSnake(std::deque<POS> q);
+	virtual void Init() override;
+	virtual void Update() override;
+	virtual void Render() override;
+	virtual void RenderSnake(std::deque<POS> q);
 public:
 	POS GetSnakeHead();
-	void MoveSnake(Dir dir);
+	virtual void MoveSnake(Dir dir);
 	void Dead();
 	void AddSnakeBody();
 	bool CheckCanMove(const POS& nextPos);
 	void ApplyGravity();
 	void Interact();
-private:
+protected:
 	std::deque<POS> location;
 	std::deque<POS> beforeLocation;
 	POS beforeBody;
 	InputHandler* inputHandler;
 	Map* map;
 public:
-	bool isCanRender;
 	bool isDead;
-	bool isTitleSnake;
 	bool isClear;
 };
