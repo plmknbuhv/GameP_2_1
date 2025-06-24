@@ -5,6 +5,10 @@ GameScene* SceneManager::sceneList[] =
 {
 	new GameScene(1, 2),
 	new GameScene(2, 2),
+	new GameScene(3, 2),
+	new GameScene(4, 2),
+	new GameScene(5, 2),
+	new GameScene(6, 2),
 }; // 딜리트 해야함
 
 SceneManager::SceneManager() : Single()
