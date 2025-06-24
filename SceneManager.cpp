@@ -11,7 +11,7 @@ SceneManager::SceneManager() : Single()
 	, stageNum(0)
 	, currentGameScene(nullptr)
 	, titleScene(new TitleScene)
-	, gameOverScene(new OverScene)
+	, gameOverScene(new EndingScene)
 	, resolution{}
 {
 	resolution = GetConsoleResolution();

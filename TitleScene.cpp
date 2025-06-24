@@ -59,9 +59,9 @@ void TitleScene::Update()
 	Input dir = inputHandler->HandleTitleInput();
 	if (dir == Input::SPACE)
 	{
+		system("cls");
 		if (currentButton == Dir::RIGHT)
 		{
-			system("cls");
 			exit(0);
 		}
 		else if (currentButton == Dir::LEFT)

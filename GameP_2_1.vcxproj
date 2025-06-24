@@ -130,6 +130,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Console.cpp" />
+    <ClCompile Include="EndingSnake.cpp" />
     <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="GameScene.cpp" />
@@ -138,7 +139,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MoveCommand.cpp" />
-    <ClCompile Include="OverScene.cpp" />
+    <ClCompile Include="EndingScene.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Single.cpp" />
@@ -149,6 +150,7 @@
   <ItemGroup>
     <ClInclude Include="Console.h" />
     <ClInclude Include="Defines.h" />
+    <ClInclude Include="EndingSnake.h" />
     <ClInclude Include="Enums.h" />
     <ClInclude Include="GameLogic.h" />
     <ClInclude Include="Actor.h" />
@@ -157,7 +159,7 @@
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MoveCommand.h" />
-    <ClInclude Include="OverScene.h" />
+    <ClInclude Include="EndingScene.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Single.h" />
