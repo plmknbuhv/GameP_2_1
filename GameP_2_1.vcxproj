@@ -140,6 +140,7 @@
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MoveCommand.cpp" />
     <ClCompile Include="EndingScene.cpp" />
+    <ClCompile Include="ResetCommand.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Single.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Map.h" />
     <ClInclude Include="MoveCommand.h" />
     <ClInclude Include="EndingScene.h" />
+    <ClInclude Include="ResetCommand.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Single.h" />

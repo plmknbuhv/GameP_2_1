@@ -1,5 +1,6 @@
 #include "InputHandler.h"
 #include "MoveCommand.h"
+#include "ResetCommand.h"
 #include <Windows.h>
 
 InputHandler::InputHandler()
@@ -8,6 +9,7 @@ InputHandler::InputHandler()
 	m_vecKeys.push_back({ 'S', Input::DOWN });
 	m_vecKeys.push_back({ 'A', Input::LEFT });
 	m_vecKeys.push_back({ 'D', Input::RIGHT });
+	m_vecKeys.push_back({ 'R', Input::RESET });
 	m_vecKeys.push_back({ VK_SPACE, Input::SPACE });
 }
 
@@ -25,6 +27,20 @@ ICommand* InputHandler::HandleInput()
 		{
 			key.wasPressed = isPressed;
 			return new MoveCommand((Dir)key.key, false);
+		}
+	}
+	return nullptr;
+}
+
+ICommand* InputHandler::HandleReset()
+{
+	for (auto& key : m_vecKeys)
+	{
+		bool isPressed = (GetAsyncKeyState(key.vk) & 0x8000) != 0;
+		if (isPressed && key.key == Input::RESET)
+		{
+			key.wasPressed = isPressed;
+			return new ResetCommand();
 		}
 	}
 	return nullptr;

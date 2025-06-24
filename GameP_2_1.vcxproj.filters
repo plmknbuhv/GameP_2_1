@@ -82,6 +82,9 @@
     <ClCompile Include="EndingSnake.cpp">
       <Filter>03_Object\Snake</Filter>
     </ClCompile>
+    <ClCompile Include="ResetCommand.cpp">
+      <Filter>07_Module\Command</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Console.h">
@@ -137,6 +140,9 @@
     </ClInclude>
     <ClInclude Include="EndingSnake.h">
       <Filter>03_Object\Snake</Filter>
+    </ClInclude>
+    <ClInclude Include="ResetCommand.h">
+      <Filter>07_Module\Command</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

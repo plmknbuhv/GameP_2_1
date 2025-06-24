@@ -14,6 +14,7 @@ class InputHandler
 public:
 	InputHandler();
 public:
+	ICommand* HandleReset();
 	ICommand* HandleInput();
 	Input HandleTitleInput();
 	std::vector<InputKey> m_vecKeys;

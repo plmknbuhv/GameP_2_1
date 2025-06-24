@@ -51,7 +51,6 @@ void GameScene::Update()
 	if (snake->isDead)
 	{
 		snake->Render();
-		Sleep(1000);
 		InitScene();
 	}
 }

@@ -6,5 +6,5 @@ enum class Dir
 
 enum class Input
 {
-	UP, DOWN, LEFT, RIGHT, SPACE, NONE
+	UP, DOWN, LEFT, RIGHT, SPACE, RESET, NONE
 };

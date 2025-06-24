@@ -133,7 +133,14 @@ void Snake::Update()
 
 	ApplyGravity();
 
-	ICommand* cmd = inputHandler->HandleInput();
+	ICommand* cmd = inputHandler->HandleReset();
+	if (cmd != nullptr)
+	{
+		cmd->Execute(this);
+		delete cmd;
+		return;
+	}
+	cmd = inputHandler->HandleInput();
 	if (cmd != nullptr)
 	{
 		cmd->Execute(this);
@@ -171,6 +178,7 @@ void Snake::ApplyGravity()
 
 		if (location.front().y >= 16) // 바닥까지 떨어졌다면
 		{
+			Sleep(1000);
 			Dead();
 			return;
 		}
