@@ -76,7 +76,9 @@ void Map::Render()
 			else if (gameMap[i][j] == '3')
 				cout << "¢Í";
 			else if (gameMap[i][j] == '4')
-				cout << "£À";
+				cout << "¢À";
+			else if (gameMap[i][j] == '5')
+				cout << "¢É";
 		}
 	}
 }
@@ -88,14 +90,36 @@ void Map::GetTailPos(POS& tailPos)
 
 bool Map::CheckCanMove(const POS& nextPos)
 {
-	return (gameMap[nextPos.y][nextPos.x] != '1');
+	if (gameMap[nextPos.y][nextPos.x] == '1')
+	{
+		return false;
+	}
+}
+
+bool Map::PushBox(const POS& currentPos, const POS& nextOffset)
+{
+	if (gameMap[currentPos.y][currentPos.x] == '5')
+	{
+		auto nextPos = currentPos + nextOffset;
+		if (gameMap[nextPos.y][nextPos.x] == '0')
+		{
+			gameMap[currentPos.y][currentPos.x] = '0';
+			gameMap[nextPos.y][nextPos.x] = '5';
+
+			return true;
+		}
+		return false;
+	}
+
+	return true;
 }
 
 bool Map::CheckCanGravity(const POS& nextPos)
 {
-	return (gameMap[nextPos.y][nextPos.x] != '3'
-		&& gameMap[nextPos.y][nextPos.x] != '1'
-		&& gameMap[nextPos.y][nextPos.x] != '4');
+	return (gameMap[nextPos.y][nextPos.x] != '3' 
+		&& gameMap[nextPos.y][nextPos.x] != '1'  
+		&& gameMap[nextPos.y][nextPos.x] != '4'  
+		&& gameMap[nextPos.y][nextPos.x] != '5');
 }
 
 bool Map::CheckCanClear(const POS& nextPos)

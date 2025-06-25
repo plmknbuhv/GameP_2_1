@@ -15,6 +15,7 @@ public:
 	bool CheckCanMove(const POS& nextPos);
 	bool CheckCanGravity(const POS& nextPos);
 	bool CheckCanClear(const POS& nextPos);
+	bool PushBox(const POS& currentPos, const POS& nextOffset);
 	bool CheckCanEat(const POS& nextPos);
 private:
 	char gameMap[13][23];

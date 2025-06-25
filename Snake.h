@@ -23,7 +23,7 @@ public:
 	virtual void MoveSnake(Dir dir);
 	void Dead();
 	void AddSnakeBody();
-	bool CheckCanMove(const POS& nextPos);
+	bool CheckCanMove(const POS& currentPos);
 	void ApplyGravity();
 	void Interact();
 protected:

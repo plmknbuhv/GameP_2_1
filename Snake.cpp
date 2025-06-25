@@ -77,6 +77,8 @@ void Snake::MoveSnake(Dir dir)
 		(!map->CheckCanMove(location.front() + nextPos)
 		|| !CheckCanMove(location.front() + nextPos)))
 		return;
+	if (map->PushBox(location.front() + nextPos, nextPos) == false)
+		return;
 
 	beforeBody = location.back();
 	location.push_front(location.front() + nextPos);
