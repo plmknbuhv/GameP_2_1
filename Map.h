@@ -19,6 +19,7 @@ public:
 	bool CheckCanClear(const POS& nextPos);
 	bool PushBox(const POS& currentPos, const POS& nextOffset);
 	bool CheckCanEat(const POS& nextPos);
+	void RemoveBox(Box* box);
 private:
 	char gameMap[13][23];
 	POS tailPos;

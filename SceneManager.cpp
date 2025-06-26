@@ -13,7 +13,7 @@ GameScene* SceneManager::sceneList[] =
 	new GameScene(8, 2),
 	new GameScene(9, 2),
 	new GameScene(10, 2),
-	new GameScene(11, 2), // 박스 스테이지
+	// new GameScene(11, 2), // 박스 스테이지
 };
 
 SceneManager::SceneManager() : Single()
@@ -35,7 +35,7 @@ void SceneManager::RunScene()
 		UpdateScene();
 		RenderScene();
 
-		FrameSync(60);
+		FrameSync(50);
 	}
 }
 

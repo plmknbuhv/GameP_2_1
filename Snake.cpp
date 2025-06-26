@@ -178,11 +178,14 @@ void Snake::ApplyGravity()
 
 		beforeBody = { 0, -3 };
 
-		if (location.front().y >= 16) // 바닥까지 떨어졌다면
+		for (auto& p : location)
 		{
-			Sleep(1000);
-			Dead();
-			return;
+			if (p.y >= 18) // 바닥까지 떨어졌다면
+			{
+				Sleep(1000);
+				Dead();
+				return;
+			}
 		}
 	}
 }

@@ -58,7 +58,7 @@ void Map::Init()
 				tailPos = { j, i };
 			else if (gameMap[i][j] == '5')
 			{
-				Box* box = new Box(POS{j,i}); 
+				Box* box = new Box(POS{j,i}, this); 
 				boxes.push_back(box);
 				gameMap[i][j] = '0';
 			}
@@ -68,7 +68,10 @@ void Map::Init()
 
 void Map::Update()
 {
-
+	for (auto b : boxes)
+	{
+		b->Update();
+	}
 }
 
 void Map::Render()
@@ -155,3 +158,8 @@ bool Map::CheckCanEat(const POS& nextPos)
 	}
 	return false;
 }
+
+void Map::RemoveBox(Box* box)
+{
+	boxes.erase(std::remove(boxes.begin(), boxes.end(), box), boxes.end());
+}	

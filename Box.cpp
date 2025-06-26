@@ -1,8 +1,9 @@
 #include "Box.h"
 #include "Console.h"
+#include "Map.h"
 
-Box::Box(POS pos)
-	: position()
+Box::Box(POS pos, Map* map)
+	:map(map)
 {
 	position = pos;
 }
@@ -13,6 +14,7 @@ void Box::Init()
 
 void Box::Update()
 {
+	ApplyGravity();
 }
 
 void Box::Render()
@@ -24,4 +26,28 @@ void Box::Render()
 void Box::Push(POS nextOffset)
 {
 	position = position + nextOffset;
+}
+
+void Box::ApplyGravity()
+{
+	if (map->CheckCanGravity(position - POS(0, 1)) == false) return;
+
+	beforePos = position;
+
+	Gotoxy((position.x * 2) + 20, position.y + 20);
+	cout << " ";
+	position = position - POS(0, 1);
+
+	if (position.y >= 18) // 바닥까지 떨어졌다면
+	{
+		Destroy();
+		return;
+	}
+}
+
+void Box::Destroy()
+{
+	Gotoxy((position.x * 2) + 20, position.y + 20);
+	cout << " ";
+	map->RemoveBox(this);
 }
