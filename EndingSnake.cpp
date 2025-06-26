@@ -68,7 +68,7 @@ void EndingSnake::Init()
 {
 	InitSnake({rand() % 27 + 7, rand() % 27 + 7 });
 	auto dir = (Dir)(rand() % 4);
-	for (int i = 0; i < rand() % 5 + 2; i++)
+	for (int i = 0; i < rand() % 5 + 3; i++)
 	{
 		MoveSnake(dir);
 		AddSnakeBody();

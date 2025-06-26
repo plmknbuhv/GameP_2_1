@@ -60,6 +60,8 @@ void GameScene::Render()
 	for (Actor* a : ObjList)
 		a->Render();
 
-	Gotoxy(2,1);
+	Gotoxy(9,2);
 	cout << stageNum << " 스테이지";
+	Gotoxy(5,3);
+	cout << "R 키를 눌러 다시시작";
 }

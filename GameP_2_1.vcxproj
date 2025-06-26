@@ -129,6 +129,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Box.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="EndingSnake.cpp" />
     <ClCompile Include="GameLogic.cpp" />
@@ -149,6 +150,7 @@
     <ClCompile Include="TitleSnake.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Box.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="Defines.h" />
     <ClInclude Include="EndingSnake.h" />

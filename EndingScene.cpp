@@ -16,7 +16,7 @@ void EndingScene::InitScene()
 	system("cls");
 
 	srand((unsigned int)time(NULL)); // 시드 값을 바꾸는 난수
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 7; i++)
 	{
 		EndingSnake *snake = new EndingSnake();
 		snake->Init();

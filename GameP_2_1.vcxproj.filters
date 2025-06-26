@@ -85,6 +85,9 @@
     <ClCompile Include="ResetCommand.cpp">
       <Filter>07_Module\Command</Filter>
     </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>03_Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Console.h">
@@ -143,6 +146,9 @@
     </ClInclude>
     <ClInclude Include="ResetCommand.h">
       <Filter>07_Module\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>03_Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
