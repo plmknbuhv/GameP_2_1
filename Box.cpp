@@ -30,12 +30,13 @@ void Box::Push(POS nextOffset)
 
 void Box::ApplyGravity()
 {
-	if (map->CheckCanGravity(position - POS(0, 1)) == false) return;
+	if (map->CheckCanGravityBox(position - POS(0, 1)) == false) return;
 
 	beforePos = position;
 
 	Gotoxy((position.x * 2) + 20, position.y + 20);
 	cout << " ";
+
 	position = position - POS(0, 1);
 
 	if (position.y >= 18) // 바닥까지 떨어졌다면

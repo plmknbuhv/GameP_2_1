@@ -26,8 +26,9 @@ public:
 	bool CheckCanMove(const POS& currentPos);
 	void ApplyGravity();
 	void Interact();
-protected:
+public:
 	std::deque<POS> location;
+protected:
 	std::deque<POS> beforeLocation;
 	POS beforeBody;
 	InputHandler* inputHandler;

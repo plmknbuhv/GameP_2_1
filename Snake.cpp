@@ -199,6 +199,7 @@ void Snake::Render()
 {
 	Gotoxy((beforeBody.x * 2) + 20, beforeBody.y + 20);
 	cout << " ";
+	beforeBody = {0, -3};
 
 	for (auto p : beforeLocation)
 	{

@@ -55,7 +55,10 @@ void Map::Init()
 			if (gameMap[i][j] == '3')
 				endPos = { j, i };
 			else if (gameMap[i][j] == '2')
+			{
 				tailPos = { j, i };
+				gameMap[i][j] = '0';
+			}
 			else if (gameMap[i][j] == '5')
 			{
 				Box* box = new Box(POS{j,i}, this); 
@@ -98,7 +101,7 @@ void Map::Render()
 
 void Map::GetTailPos(POS& tailPos)
 {
-	tailPos = this->tailPos;
+	tailPos = this->tailPos; 
 }
 
 bool Map::CheckCanMove(const POS& nextPos)
@@ -144,6 +147,24 @@ bool Map::CheckCanGravity(const POS& nextPos)
 		&& gameMap[nextPos.y][nextPos.x] != '4');
 }
 
+bool Map::CheckCanGravityBox(const POS& nextPos)
+{
+	for (auto b : boxes)
+	{
+		if (b->position == nextPos)
+			return false;
+	}
+	for (auto p : snake->location)
+	{
+		if (p == nextPos)
+			return false;
+	}
+	return (gameMap[nextPos.y][nextPos.x] != '3'
+		&& gameMap[nextPos.y][nextPos.x] != '1'
+		&& gameMap[nextPos.y][nextPos.x] != '4');
+}
+
+
 bool Map::CheckCanClear(const POS& nextPos)
 {
 	return(gameMap[nextPos.y][nextPos.x] == '3');
@@ -162,4 +183,9 @@ bool Map::CheckCanEat(const POS& nextPos)
 void Map::RemoveBox(Box* box)
 {
 	boxes.erase(std::remove(boxes.begin(), boxes.end(), box), boxes.end());
-}	
+}
+
+void Map::SetSnake(Snake* snake)
+{
+	this->snake = snake;
+}
