@@ -17,7 +17,7 @@ Map::Map(int stageNum)
 	{
 		for (int i = 0; i < 13; i++)
 			mapFile >> gameMap[i];
-		mapFile.close();
+		mapFile.close(); 
 	}
 	else
 		std::cout << "¸Ê ¿¡¹Ýµù" << std::endl;
@@ -36,6 +36,7 @@ Map::Map(int stageNum)
 
 void Map::Init()
 {
+	boxes.clear();
 	std::string filename = std::format("Maps/Stage{}.txt", stageNum);
 	std::ifstream mapFile(filename);
 	if (mapFile.is_open())
@@ -55,6 +56,12 @@ void Map::Init()
 				endPos = { j, i };
 			else if (gameMap[i][j] == '2')
 				tailPos = { j, i };
+			else if (gameMap[i][j] == '5')
+			{
+				Box* box = new Box(POS{j,i}); 
+				boxes.push_back(box);
+				gameMap[i][j] = '0';
+			}
 		}
 	}
 }
@@ -77,9 +84,12 @@ void Map::Render()
 				cout << "¢Í";
 			else if (gameMap[i][j] == '4')
 				cout << "¢À";
-			else if (gameMap[i][j] == '5')
-				cout << "¢É";
 		}
+	}
+
+	for (auto b : boxes)
+	{
+		b->Render();
 	}
 }
 
@@ -98,17 +108,22 @@ bool Map::CheckCanMove(const POS& nextPos)
 
 bool Map::PushBox(const POS& currentPos, const POS& nextOffset)
 {
-	if (gameMap[currentPos.y][currentPos.x] == '5')
+	for (auto b : boxes)
 	{
-		auto nextPos = currentPos + nextOffset;
-		if (gameMap[nextPos.y][nextPos.x] == '0')
+		if (b->position == currentPos)
 		{
-			gameMap[currentPos.y][currentPos.x] = '0';
-			gameMap[nextPos.y][nextPos.x] = '5';
+			auto nextPos = currentPos + nextOffset;
+			if (gameMap[nextPos.y][nextPos.x] == '0')
+			{
+				b->Push(nextOffset);
 
-			return true;
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
-		return false;
 	}
 
 	return true;
@@ -116,10 +131,14 @@ bool Map::PushBox(const POS& currentPos, const POS& nextOffset)
 
 bool Map::CheckCanGravity(const POS& nextPos)
 {
+	for (auto b : boxes)
+	{
+		if (b->position == nextPos)
+			return false;
+	}
 	return (gameMap[nextPos.y][nextPos.x] != '3' 
 		&& gameMap[nextPos.y][nextPos.x] != '1'  
-		&& gameMap[nextPos.y][nextPos.x] != '4'  
-		&& gameMap[nextPos.y][nextPos.x] != '5');
+		&& gameMap[nextPos.y][nextPos.x] != '4');
 }
 
 bool Map::CheckCanClear(const POS& nextPos)

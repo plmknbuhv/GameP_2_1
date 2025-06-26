@@ -1,6 +1,8 @@
 #pragma once
+#include <vector>
 #include "Actor.h"
 #include "GameLogic.h"
+#include "Box.h"
 
 class Map : public Actor
 {
@@ -22,5 +24,6 @@ private:
 	POS tailPos;
 	POS endPos;
 	int stageNum;
+	std::vector<Box*> boxes;
 };
 
