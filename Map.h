@@ -19,6 +19,7 @@ public:
 	bool CheckCanGravity(const POS& nextPos);
 	bool CheckCanGravityBox(const POS& nextPos);
 	bool CheckCanClear(const POS& nextPos);
+	bool CheckIsDead(const POS& nextPos);
 	bool PushBox(const POS& currentPos, const POS& nextOffset);
 	bool CheckCanEat(const POS& nextPos);
 	void RemoveBox(Box* box);

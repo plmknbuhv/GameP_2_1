@@ -85,6 +85,11 @@ void Snake::MoveSnake(Dir dir)
 
 	location.pop_back();
 
+	if (map->CheckIsDead(location.front()))
+	{
+		Dead(location.front());
+	}
+
 	Interact();
 }
 
@@ -180,19 +185,25 @@ void Snake::ApplyGravity()
 
 		for (auto& p : location)
 		{
-			if (p.y >= 18) // ¹Ù´Ú±îÁö ¶³¾îÁ³´Ù¸é
+			if (p.y >= 15) // ¹Ù´Ú±îÁö ¶³¾îÁ³´Ù¸é
 			{
-				Sleep(1000);
-				Dead();
+				Dead(location.front());
 				return;
+			}
+			else if (map->CheckIsDead(p))
+			{
+				Dead(p);
 			}
 		}
 	}
 }
 
-void Snake::Dead()
+void Snake::Dead(POS deadPos)
 {
 	isDead = true;
+	this->deadPos = deadPos;
+	Render();
+	Sleep(1000);
 }
 
 void Snake::Render()
@@ -221,7 +232,11 @@ void Snake::RenderSnake(std::deque<POS> q)
 
 		if (q.size() == 1)
 		{
-			SetColor();
+			if (isDead && q.back() == deadPos)
+				SetColor(COLOR::BLUE);
+			else
+				SetColor();
+
 			if (isClear == false)
 				cout << "¡Ü";
 			else
@@ -229,7 +244,9 @@ void Snake::RenderSnake(std::deque<POS> q)
 		}
 		else
 		{
-			if (cnt % 3 == 0)
+			if (isDead && q.back() == deadPos)
+				SetColor(COLOR::BLUE);
+			else if (cnt % 3 == 0)
 				SetColor(COLOR::RED);
 			else if (cnt % 3 == 1)
 				SetColor(COLOR::YELLOW);

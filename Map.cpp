@@ -90,6 +90,8 @@ void Map::Render()
 				cout << "¢Í";
 			else if (gameMap[i][j] == '4')
 				cout << "¢À";
+			else if (gameMap[i][j] == '6')
+				cout << "¡Ø";
 		}
 	}
 
@@ -168,6 +170,11 @@ bool Map::CheckCanGravityBox(const POS& nextPos)
 bool Map::CheckCanClear(const POS& nextPos)
 {
 	return(gameMap[nextPos.y][nextPos.x] == '3');
+}
+
+bool Map::CheckIsDead(const POS& nextPos)
+{
+	return (gameMap[nextPos.y][nextPos.x] == '6');
 }
 
 bool Map::CheckCanEat(const POS& nextPos)

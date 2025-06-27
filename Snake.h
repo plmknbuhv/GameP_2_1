@@ -21,7 +21,7 @@ public:
 public:
 	POS GetSnakeHead();
 	virtual void MoveSnake(Dir dir);
-	void Dead();
+	void Dead(POS deadPos);
 	void AddSnakeBody();
 	bool CheckCanMove(const POS& currentPos);
 	void ApplyGravity();
@@ -34,6 +34,7 @@ protected:
 	InputHandler* inputHandler;
 	Map* map;
 public:
+	POS deadPos;
 	bool isDead;
 	bool isClear;
 };

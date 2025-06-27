@@ -10,6 +10,6 @@ void ResetCommand::Execute(Actor* _actor)
 	Snake* snake = dynamic_cast<Snake*>(_actor);
 	if (snake != nullptr)
 	{
-		snake->Dead();
+		snake->Dead(snake->location.front());;
 	}
 }
