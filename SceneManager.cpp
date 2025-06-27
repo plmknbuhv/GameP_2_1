@@ -14,7 +14,12 @@ GameScene* SceneManager::sceneList[] =
 	//new GameScene(9, 2),
 	//new GameScene(10, 2),
 	//new GameScene(11, 2), // 박스 스테이지
-	new GameScene(12, 2), // 박스 스테이지
+	//new GameScene(12, 2),
+	//new GameScene(13, 2),
+	//new GameScene(14, 2),
+	//new GameScene(15, 2),
+	//new GameScene(16, 2),
+	new GameScene(17, 2),
 };
 
 SceneManager::SceneManager() : Single()

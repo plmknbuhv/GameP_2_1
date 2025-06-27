@@ -123,6 +123,11 @@ bool Map::PushBox(const POS& currentPos, const POS& nextOffset)
 			auto nextPos = currentPos + nextOffset;
 			if (gameMap[nextPos.y][nextPos.x] == '0')
 			{
+				for (auto p : snake->location)
+				{
+					if (nextPos == p)
+						return false;
+				}
 				b->Push(nextOffset);
 
 				return true;
@@ -174,7 +179,12 @@ bool Map::CheckCanClear(const POS& nextPos)
 
 bool Map::CheckIsDead(const POS& nextPos)
 {
-	return (gameMap[nextPos.y][nextPos.x] == '6');
+	if (gameMap[nextPos.y][nextPos.x] == '6')
+	{
+		gameMap[nextPos.y][nextPos.x] = '0';
+		return true;
+	}
+	return false;
 }
 
 bool Map::CheckCanEat(const POS& nextPos)
