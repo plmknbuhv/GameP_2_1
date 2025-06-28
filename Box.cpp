@@ -15,6 +15,10 @@ void Box::Init()
 void Box::Update()
 {
 	ApplyGravity();
+	if (map->CheckIsDead(position))
+	{
+
+	}
 }
 
 void Box::Render()

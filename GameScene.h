@@ -17,8 +17,6 @@ public:
 private:
 	vector<Actor*> ObjList;
 	Snake* snake;
-public:
-	Snake* GetSnake();
 private:
 	POS tailPos;
 	int snakeBodyCount;

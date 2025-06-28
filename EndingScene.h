@@ -12,8 +12,6 @@ public:
 	void Update() override;
 	void Render() override;
 private:
-	void MoveSnake();
-private:
 	std::vector<EndingSnake*> snakes;
 	POS resolution;
 };

@@ -2,7 +2,7 @@
 #include <vector>
 #include "Actor.h"
 #include "GameLogic.h"
-#include "Box.h"
+#include "Box.h"	
 
 class Snake;
 class Map : public Actor
