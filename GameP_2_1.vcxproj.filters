@@ -88,6 +88,9 @@
     <ClCompile Include="Box.cpp">
       <Filter>03_Object</Filter>
     </ClCompile>
+    <ClCompile Include="Mci.cpp">
+      <Filter>07_Module</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Console.h">
@@ -149,6 +152,9 @@
     </ClInclude>
     <ClInclude Include="Box.h">
       <Filter>03_Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mci.h">
+      <Filter>07_Module</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

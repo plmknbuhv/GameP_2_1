@@ -139,6 +139,7 @@
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Mci.cpp" />
     <ClCompile Include="MoveCommand.cpp" />
     <ClCompile Include="EndingScene.cpp" />
     <ClCompile Include="ResetCommand.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="ICommand.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="Mci.h" />
     <ClInclude Include="MoveCommand.h" />
     <ClInclude Include="EndingScene.h" />
     <ClInclude Include="ResetCommand.h" />

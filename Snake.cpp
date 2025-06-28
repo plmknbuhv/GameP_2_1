@@ -3,7 +3,9 @@
 #include "Console.h"
 #include "ICommand.h"
 #include "SceneManager.h"
-#include <iostream>
+#include <Windows.h>
+#include <mmsystem.h>
+#pragma comment(lib, "winmm.lib")
 
 Snake::Snake()
 {
@@ -113,6 +115,7 @@ void Snake::Interact()
 	}
 	else if (map->CheckCanEat(location.front()))
 	{
+		PlaySound(TEXT("Sounds/eatSound.wav"), NULL, SND_ASYNC | SND_FILENAME);
 		AddSnakeBody();
 		beforeBody = { 0, -3 };
 	}
